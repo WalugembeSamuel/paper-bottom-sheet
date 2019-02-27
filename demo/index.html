@@ -2,26 +2,40 @@
 <html>
 	<head>
 		<title>Demo</title>
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-		<link rel="import" href="../../paper-button/paper-button.html">
-		<link rel="import" href="../../paper-checkbox/paper-checkbox.html">
+		<script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../node_modules/web-animations-js/web-animations-next.min.js"></script>
+		<script type="module">
+			import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
+			import '@polymer/iron-demo-helpers/demo-snippet';
+			import '@polymer/paper-button/paper-button';
+			import '@polymer/paper-checkbox/paper-checkbox';
+		</script>
+		
 		<!-- @see https://github.com/PolymerElements/neon-animation/issues/226#issuecomment-290930385 -->
-		<link rel="import" href="../../neon-animation/web-animations.html">
-		<link rel="import" href="../paper-bottom-sheet.html">
-		<link rel="import" href="../paper-bottom-sheet-item.html">
+		<!-- <link rel="import" href="../../neon-animation/web-animations.html"> -->
+		<script type="module" src="../paper-bottom-sheet.js"></script>
+		<script type="module" src="../paper-bottom-sheet-item.js"></script>
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles">
+		
+				body{
+				padding:0;
+				}
+		
+				demo-snippet{
+					--demo-snippet-demo: {
+						background-color:#fff;
+					}
+				}
+			</style>
+		</custom-style>
 	</head>
 
 	<body>
-		<demo-snippet class="centered-demo">
+		<demo-snippet>
 			<template>
 				<dom-bind>
 					<template>
-						<custom-style>
-							<style include="demo-pages-shared-styles"></style>
-						</custom-style>
-
 						<paper-bottom-sheet slide="{{sliding}}" modal="{{modalSheet}}" with-backdrop="[[withBackdrop]]" id="sheet">
 							<paper-bottom-sheet-item text="Star" icon="icons:star-border" on-tap="tapStar"></paper-bottom-sheet-item>
 							<paper-bottom-sheet-item text="Delete" icon="icons:delete" warning on-tap="tapDelete"></paper-bottom-sheet-item>
@@ -39,16 +53,12 @@
 							scope.openSheet = function() {
 								this.$.sheet.open();
 							}
-
 							scope.tapStar = function() {
 								this.$.sheet.close();
-
 								alert("Starred");
 							}
-
 							scope.tapDelete = function() {
 								this.$.sheet.close();
-
 								alert("Deleted");
 							}
 						</script>

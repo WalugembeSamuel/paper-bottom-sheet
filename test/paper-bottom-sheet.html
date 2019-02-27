@@ -6,13 +6,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../web-component-tester/browser.js"></script>
-		<script src="../../test-fixture/test-fixture-mocha.js"></script>
+		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>cript src="../../wct-browser-legacy/browser.js"></script>pt>
 
-		<link rel="import" href="../../polymer/polymer.html">
-		<link rel="import" href="../paper-bottom-sheet.html">
-		<link rel="import" href="../paper-bottom-sheet-item.html">
-		<link rel="import" href="../../test-fixture/test-fixture.html">
+<script src="../../@polymer/test-fixture/test-fixture-mocha.js"></script>cy.js"></script>
+		<script type="module" src="../paper-bottom-sheet.js"></script>
+		<script type="module" src="../paper-bottom-sheet-item.js"></script>
+		<script type="module" src="../../@polymer/test-fixture/test-fixture.js"></script>
 	</head>
 	<body>
 
@@ -37,35 +36,40 @@
 					suite('basic behavior', function() {
 						var items;
 
-						setup(function() {
-							var element = fixture('TrivialElement');
-							items = element.querySelectorAll('paper-bottom-sheet-item');
-						});
+<script type="module">
+import '@polymer/polymer/polymer-legacy.js';
+import '../paper-bottom-sheet.js';
+import '../paper-bottom-sheet-item.js';
+import '@polymer/test-fixture/test-fixture.js';
+suite('<paper-bottom-sheet>', function() {
+    suite('basic behavior', function() {
+        var items;
 
-						test('adds custom items', function() {
-							expect(items.length).to.be.eql(2);
-						});
+        setup(function() {
+            var element = fixture('TrivialElement');
+            items = element.querySelectorAll('paper-bottom-sheet-item');
+        });
 
-						test('adds custom items in right order', function() {
-							expect(items[0].getAttribute("text")).to.be.eql("Star");
-							expect(items[1].getAttribute("text")).to.be.eql("Delete");
-						});
-					});
+        test('adds custom items', function() {
+            expect(items.length).to.be.eql(2);
+        });
 
-					suite('localization behavior', function() {
-						var element;
+        test('adds custom items in right order', function() {
+            expect(items[0].getAttribute("text")).to.be.eql("Star");
+            expect(items[1].getAttribute("text")).to.be.eql("Delete");
+        });
+    });
 
-						setup(function() {
-							element = fixture('ElementWithCustomCancelText');
-						});
+    suite('localization behavior', function() {
+        var element;
 
-						test('sets cancel based on cancel-text attribute', function() {
-							expect(element.$.cancel.text).to.be.eql("Abbrechen");
-						});
-					});
-				});
-			});
-		</script>
+        setup(function() {
+            element = fixture('ElementWithCustomCancelText');
+        });
 
-	</body>
-</html>
+        test('sets cancel based on cancel-text attribute', function() {
+            expect(element.$.cancel.text).to.be.eql("Abbrechen");
+        });
+    });
+});
+</script>
